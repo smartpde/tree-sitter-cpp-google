@@ -1,0 +1,113 @@
+================================
+assignment, no declaration
+================================
+
+ASSIGN_OR_RETURN(a, b);
+
+---
+
+(translation_unit
+  (macro_assignment
+    (assignment_macro_name)
+    (identifier)
+    (identifier)))
+
+================================
+assignment, declaration
+================================
+
+ASSIGN_OR_RETURN(int a, b);
+
+---
+
+(translation_unit
+  (macro_assignment
+    (assignment_macro_name)
+    (primitive_type)
+    (identifier)
+    (identifier)))
+
+================================
+assignment, expression
+================================
+
+ASSIGN_OR_RETURN(*a.Add(), b);
+
+---
+
+(translation_unit
+  (macro_assignment
+    (assignment_macro_name)
+    (pointer_expression
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (argument_list)))
+    (identifier)))
+
+================================
+Additional options
+================================
+
+ASSIGN_OR_RETURN(*a.Add(), b, _.Log() << "log message");
+
+---
+
+(translation_unit
+  (macro_assignment
+    (assignment_macro_name)
+    (pointer_expression
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (argument_list)))
+    (identifier)
+    (binary_expression
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (argument_list))
+      (string_literal
+        (string_content)))))
+
+================================
+assignment, type modifier
+================================
+
+ASSERT_OK_AND_ASSIGN(const int a, b(c));
+
+---
+
+(translation_unit
+  (macro_assignment
+    (assignment_macro_name)
+    (type_qualifier)
+    (primitive_type)
+    (identifier)
+    (call_expression
+      (identifier)
+      (argument_list
+        (identifier)))))
+
+================================
+ASSERT_OK_AND_ASSIGN variation
+================================
+
+ASSERT_OK_AND_ASSIGN(*a.Add(), b);
+
+---
+
+(translation_unit
+  (macro_assignment
+    (assignment_macro_name)
+    (pointer_expression
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (argument_list)))
+    (identifier)))
+

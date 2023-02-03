@@ -1,22 +1,31 @@
-# tree-sitter-cpp
+# tree-sitter-cpp-google
 
-[![CI][ci]](https://github.com/tree-sitter/tree-sitter-cpp/actions/workflows/ci.yml)
-[![discord][discord]](https://discord.gg/w7nTvsVJhm)
-[![matrix][matrix]](https://matrix.to/#/#tree-sitter-chat:matrix.org)
-[![crates][crates]](https://crates.io/crates/tree-sitter-cpp)
-[![npm][npm]](https://www.npmjs.com/package/tree-sitter-cpp)
-[![pypi][pypi]](https://pypi.org/project/tree-sitter-cpp)
+A fork of the [C++ grammar](https://github.com/tree-sitter/tree-sitter-cpp) for 
+[tree-sitter](https://github.com/tree-sitter/tree-sitter), with some additional
+syntax node used in Google projects, e.g.
+[status macros](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/stubs/status_macros.h).
 
-C++ grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter).
+The fork is intended to be kept up-to-date with the main C++ grammar. If you
+notice that it is out of sync, file an issue.
 
-## References
+# Installation
 
-- [Hyperlinked C++ BNF Grammar](http://www.nongnu.org/hcb/)
-- [EBNF Syntax: C++](http://www.externsoft.ch/download/cpp-iso.html)
+Install as a lua plugin with your favorite package manager.
 
-[ci]: https://img.shields.io/github/actions/workflow/status/tree-sitter/tree-sitter-cpp/ci.yml?logo=github&label=CI
-[discord]: https://img.shields.io/discord/1063097320771698699?logo=discord&label=discord
-[matrix]: https://img.shields.io/matrix/tree-sitter-chat%3Amatrix.org?logo=matrix&label=matrix
-[npm]: https://img.shields.io/npm/v/tree-sitter-cpp?logo=npm
-[crates]: https://img.shields.io/crates/v/tree-sitter-cpp?logo=rust
-[pypi]: https://img.shields.io/pypi/v/tree-sitter-cpp?logo=pypi&logoColor=ffd242
+```lua
+use {"smartpde/tree-sitter-cpp-google"}
+```
+
+_Before_ settig up treesitter, call `setup()` on this plugin:
+
+```lua
+-- First, initialize this plugin.
+require("tree-sitter-cpp-google").setup()
+
+-- Then, set up the treesitter as usual.
+require("nvim-treesitter.configs").setup({
+  -- Your setup here.
+})
+```
+
+Run `:TSInstall cpp` to [re]install the C++ parser from the new location.

@@ -885,6 +885,11 @@
     }
   },
   {
+    "type": "assignment_macro_name",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "attribute",
     "named": true,
     "fields": {
@@ -3915,6 +3920,72 @@
     }
   },
   {
+    "type": "macro_assignment",
+    "named": true,
+    "fields": {
+      "declarator": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "_declarator",
+            "named": true
+          }
+        ]
+      },
+      "macro": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "assignment_macro_name",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_specifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_declaration",
+          "named": true
+        },
+        {
+          "type": "attribute_specifier",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "ms_declspec_modifier",
+          "named": true
+        },
+        {
+          "type": "storage_class_specifier",
+          "named": true
+        },
+        {
+          "type": "type_qualifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "ms_based_modifier",
     "named": true,
     "fields": {},
@@ -6570,6 +6641,10 @@
           "named": true
         },
         {
+          "type": "macro_assignment",
+          "named": true
+        },
+        {
           "type": "namespace_alias_definition",
           "named": true
         },
@@ -7340,6 +7415,14 @@
   },
   {
     "type": "?",
+    "named": false
+  },
+  {
+    "type": "ASSERT_OK_AND_ASSIGN",
+    "named": false
+  },
+  {
+    "type": "ASSIGN_OR_RETURN",
     "named": false
   },
   {

@@ -119,6 +119,7 @@ module.exports = grammar(C, {
       alias($.constructor_or_destructor_definition, $.function_definition),
       alias($.operator_cast_definition, $.function_definition),
       alias($.operator_cast_declaration, $.declaration),
+      $.macro_assignment,
     ),
 
     _block_item: ($, original) => choice(
@@ -664,6 +665,26 @@ module.exports = grammar(C, {
     abstract_function_declarator: $ => seq(
       field('declarator', optional($._abstract_declarator)),
       $._function_declarator_seq,
+    ),
+
+    // Similar to regular declarator, but without a semicolon.
+    _macro_declarator: ($) => seq(
+      repeat($._declaration_modifiers),
+      field('type', $.type_specifier),
+      field('declarator', $._declarator),
+    ),
+
+    assignment_macro_name: ($) => choice('ASSIGN_OR_RETURN', 'ASSERT_OK_AND_ASSIGN'),
+    // assignment_macro_name: ($) => 'ASSERT_OK_AND_ASSIGN',
+
+    macro_assignment: ($) => seq(
+      field('macro', $.assignment_macro_name),
+      '(',
+      choice($._macro_declarator, $.expression),
+      ',',
+      commaSep($.expression),
+      ')',
+      ';'
     ),
 
     trailing_return_type: $ => seq('->', $.type_descriptor),
