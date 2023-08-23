@@ -1643,6 +1643,10 @@
           "named": true
         },
         {
+          "type": "macro_assignment",
+          "named": true
+        },
+        {
           "type": "namespace_alias_definition",
           "named": true
         },
@@ -2127,6 +2131,10 @@
         },
         {
           "type": "linkage_specification",
+          "named": true
+        },
+        {
+          "type": "macro_assignment",
           "named": true
         },
         {
@@ -4880,6 +4888,10 @@
           "named": true
         },
         {
+          "type": "macro_assignment",
+          "named": true
+        },
+        {
           "type": "namespace_alias_definition",
           "named": true
         },
@@ -5016,6 +5028,10 @@
           "named": true
         },
         {
+          "type": "macro_assignment",
+          "named": true
+        },
+        {
           "type": "namespace_alias_definition",
           "named": true
         },
@@ -5120,6 +5136,10 @@
         },
         {
           "type": "linkage_specification",
+          "named": true
+        },
+        {
+          "type": "macro_assignment",
           "named": true
         },
         {
@@ -5323,6 +5343,10 @@
           "named": true
         },
         {
+          "type": "macro_assignment",
+          "named": true
+        },
+        {
           "type": "namespace_alias_definition",
           "named": true
         },
@@ -5456,6 +5480,10 @@
         },
         {
           "type": "linkage_specification",
+          "named": true
+        },
+        {
+          "type": "macro_assignment",
           "named": true
         },
         {

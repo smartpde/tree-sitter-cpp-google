@@ -244,6 +244,10 @@
           },
           "named": true,
           "value": "declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "macro_assignment"
         }
       ]
     },

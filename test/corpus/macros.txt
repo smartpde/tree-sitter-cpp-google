@@ -111,3 +111,25 @@ ASSERT_OK_AND_ASSIGN(*a.Add(), b);
         (argument_list)))
     (identifier)))
 
+================================
+assignment in function
+================================
+
+void f() {
+  ASSIGN_OR_RETURN(int a, b);
+}
+
+---
+(translation_unit
+  (function_definition
+    (primitive_type)
+    (function_declarator
+      (identifier)
+      (parameter_list))
+    (compound_statement
+      (macro_assignment
+        (assignment_macro_name)
+        (primitive_type)
+        (identifier)
+        (identifier)))))
+
