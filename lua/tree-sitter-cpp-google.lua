@@ -6,7 +6,7 @@ M.setup = function()
     install_info = {
       url = "https://github.com/smartpde/tree-sitter-cpp-google",
       files = {"src/parser.c", "src/scanner.c"},
-      revision = "5dd0ccc86d2333b22b01f72ed06d454d974e1717",
+      revision = "866a28d6d252902e5a6803ebfaed53f0e35902f1",
       generate_requires_npm = true
     }
   }
