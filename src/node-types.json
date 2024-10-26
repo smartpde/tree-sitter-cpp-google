@@ -468,7 +468,30 @@
   {
     "type": "absl_thread_annotation",
     "named": true,
-    "fields": {},
+    "fields": {
+      "annotation": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ABSL_EXCLUSIVE_LOCKS_REQUIRED",
+            "named": false
+          },
+          {
+            "type": "ABSL_GUARDED_BY",
+            "named": false
+          },
+          {
+            "type": "ABSL_LOCKS_EXCLUDED",
+            "named": false
+          },
+          {
+            "type": "ABSL_SHARED_LOCKS_REQUIRED",
+            "named": false
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": false,
       "required": true,
@@ -4041,6 +4064,16 @@
           {
             "type": "expression",
             "named": true
+          }
+        ]
+      },
+      "flag": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ABSL_FLAG",
+            "named": false
           }
         ]
       },

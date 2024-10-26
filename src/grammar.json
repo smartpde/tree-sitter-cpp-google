@@ -13242,8 +13242,12 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "ABSL_FLAG"
+          "type": "FIELD",
+          "name": "flag",
+          "content": {
+            "type": "STRING",
+            "value": "ABSL_FLAG"
+          }
         },
         {
           "type": "STRING",
@@ -13307,25 +13311,29 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "ABSL_GUARDED_BY"
-            },
-            {
-              "type": "STRING",
-              "value": "ABSL_EXCLUSIVE_LOCKS_REQUIRED"
-            },
-            {
-              "type": "STRING",
-              "value": "ABSL_SHARED_LOCKS_REQUIRED"
-            },
-            {
-              "type": "STRING",
-              "value": "ABSL_LOCKS_EXCLUDED"
-            }
-          ]
+          "type": "FIELD",
+          "name": "annotation",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "ABSL_GUARDED_BY"
+              },
+              {
+                "type": "STRING",
+                "value": "ABSL_EXCLUSIVE_LOCKS_REQUIRED"
+              },
+              {
+                "type": "STRING",
+                "value": "ABSL_SHARED_LOCKS_REQUIRED"
+              },
+              {
+                "type": "STRING",
+                "value": "ABSL_LOCKS_EXCLUDED"
+              }
+            ]
+          }
         },
         {
           "type": "STRING",

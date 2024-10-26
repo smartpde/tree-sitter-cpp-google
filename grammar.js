@@ -692,7 +692,7 @@ module.exports = grammar(C, {
     ),
 
     macro_flag_define: ($) => seq(
-      'ABSL_FLAG',
+      field('flag', 'ABSL_FLAG'),
       '(',
       field('type', $.type_specifier),
       ',',
@@ -706,12 +706,12 @@ module.exports = grammar(C, {
     ),
 
     absl_thread_annotation: $ => seq(
-      choice(
+      field('annotation', choice(
         'ABSL_GUARDED_BY',
         'ABSL_EXCLUSIVE_LOCKS_REQUIRED',
         'ABSL_SHARED_LOCKS_REQUIRED',
         'ABSL_LOCKS_EXCLUDED',
-      ),
+      )),
       '(',
       $.identifier,
       ')'
