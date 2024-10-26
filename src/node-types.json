@@ -466,6 +466,21 @@
     ]
   },
   {
+    "type": "absl_thread_annotation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "abstract_array_declarator",
     "named": true,
     "fields": {
@@ -534,6 +549,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "absl_thread_annotation",
+          "named": true
+        },
         {
           "type": "attribute_declaration",
           "named": true
@@ -2550,6 +2569,10 @@
       "required": false,
       "types": [
         {
+          "type": "absl_thread_annotation",
+          "named": true
+        },
+        {
           "type": "attribute_declaration",
           "named": true
         },
@@ -3176,6 +3199,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "absl_thread_annotation",
+          "named": true
+        },
         {
           "type": "attribute_declaration",
           "named": true
@@ -3991,6 +4018,52 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "macro_flag_define",
+    "named": true,
+    "fields": {
+      "default_value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "desc": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_specifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -6673,6 +6746,10 @@
           "named": true
         },
         {
+          "type": "macro_flag_define",
+          "named": true
+        },
+        {
           "type": "namespace_alias_definition",
           "named": true
         },
@@ -7443,6 +7520,26 @@
   },
   {
     "type": "?",
+    "named": false
+  },
+  {
+    "type": "ABSL_EXCLUSIVE_LOCKS_REQUIRED",
+    "named": false
+  },
+  {
+    "type": "ABSL_FLAG",
+    "named": false
+  },
+  {
+    "type": "ABSL_GUARDED_BY",
+    "named": false
+  },
+  {
+    "type": "ABSL_LOCKS_EXCLUDED",
+    "named": false
+  },
+  {
+    "type": "ABSL_SHARED_LOCKS_REQUIRED",
     "named": false
   },
   {

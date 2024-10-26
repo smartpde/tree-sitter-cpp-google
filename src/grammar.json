@@ -128,6 +128,10 @@
         {
           "type": "SYMBOL",
           "name": "macro_assignment"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "macro_flag_define"
         }
       ]
     },
@@ -5673,6 +5677,18 @@
                       "type": "CHOICE",
                       "members": [
                         {
+                          "type": "SYMBOL",
+                          "name": "absl_thread_annotation"
+                        },
+                        {
+                          "type": "BLANK"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "CHOICE",
+                      "members": [
+                        {
                           "type": "CHOICE",
                           "members": [
                             {
@@ -5741,6 +5757,18 @@
                               "type": "SYMBOL",
                               "name": "_field_declarator"
                             }
+                          },
+                          {
+                            "type": "CHOICE",
+                            "members": [
+                              {
+                                "type": "SYMBOL",
+                                "name": "absl_thread_annotation"
+                              },
+                              {
+                                "type": "BLANK"
+                              }
+                            ]
                           },
                           {
                             "type": "CHOICE",
@@ -12935,6 +12963,18 @@
               "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "absl_thread_annotation"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -13195,6 +13235,109 @@
         {
           "type": "STRING",
           "value": ";"
+        }
+      ]
+    },
+    "macro_flag_define": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "ABSL_FLAG"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "type_specifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ","
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ","
+        },
+        {
+          "type": "FIELD",
+          "name": "default_value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ","
+        },
+        {
+          "type": "FIELD",
+          "name": "desc",
+          "content": {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
+    "absl_thread_annotation": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "ABSL_GUARDED_BY"
+            },
+            {
+              "type": "STRING",
+              "value": "ABSL_EXCLUSIVE_LOCKS_REQUIRED"
+            },
+            {
+              "type": "STRING",
+              "value": "ABSL_SHARED_LOCKS_REQUIRED"
+            },
+            {
+              "type": "STRING",
+              "value": "ABSL_LOCKS_EXCLUDED"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },

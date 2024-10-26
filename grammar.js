@@ -120,6 +120,7 @@ module.exports = grammar(C, {
       alias($.operator_cast_definition, $.function_definition),
       alias($.operator_cast_declaration, $.declaration),
       $.macro_assignment,
+      $.macro_flag_define,
     ),
 
     _block_item: ($, original) => choice(
@@ -482,6 +483,7 @@ module.exports = grammar(C, {
       $._declaration_specifiers,
       commaSep(seq(
         field('declarator', $._field_declarator),
+        optional($.absl_thread_annotation),
         optional(choice(
           $.bitfield_clause,
           field('default_value', $.initializer_list),
@@ -628,6 +630,7 @@ module.exports = grammar(C, {
       optional($._function_attributes_end),
       optional($.trailing_return_type),
       optional($._function_postfix),
+      optional($.absl_thread_annotation),
     ),
 
     _function_attributes_start: $ => prec(1, choice(
@@ -686,6 +689,32 @@ module.exports = grammar(C, {
       commaSep($.expression),
       ')',
       ';'
+    ),
+
+    macro_flag_define: ($) => seq(
+      'ABSL_FLAG',
+      '(',
+      field('type', $.type_specifier),
+      ',',
+      field('name', $.identifier),
+      ',',
+      field('default_value', $.expression),
+      ',',
+      field('desc', $.expression),
+      ')',
+      ';'
+    ),
+
+    absl_thread_annotation: $ => seq(
+      choice(
+        'ABSL_GUARDED_BY',
+        'ABSL_EXCLUSIVE_LOCKS_REQUIRED',
+        'ABSL_SHARED_LOCKS_REQUIRED',
+        'ABSL_LOCKS_EXCLUDED',
+      ),
+      '(',
+      $.identifier,
+      ')'
     ),
 
     trailing_return_type: $ => seq('->', $.type_descriptor),

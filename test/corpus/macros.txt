@@ -1,5 +1,5 @@
 ================================
-assignment, no declaration
+Assignment, no declaration
 ================================
 
 ASSIGN_OR_RETURN(a, b);
@@ -13,7 +13,7 @@ ASSIGN_OR_RETURN(a, b);
     (identifier)))
 
 ================================
-assignment, declaration
+Assignment, declaration
 ================================
 
 ASSIGN_OR_RETURN(int a, b);
@@ -28,7 +28,7 @@ ASSIGN_OR_RETURN(int a, b);
     (identifier)))
 
 ================================
-assignment, expression
+Assignment, expression
 ================================
 
 ASSIGN_OR_RETURN(*a.Add(), b);
@@ -74,7 +74,7 @@ ASSIGN_OR_RETURN(*a.Add(), b, _.Log() << "log message");
         (string_content)))))
 
 ================================
-assignment, type modifier
+Assignment, type modifier
 ================================
 
 ASSERT_OK_AND_ASSIGN(const int a, b(c));
@@ -112,7 +112,7 @@ ASSERT_OK_AND_ASSIGN(*a.Add(), b);
     (identifier)))
 
 ================================
-assignment in function
+Assignment in function
 ================================
 
 void f() {
@@ -133,3 +133,155 @@ void f() {
         (identifier)
         (identifier)))))
 
+================================
+Flag definition
+================================
+
+ABSL_FLAG(int, test, 0, "");
+
+---
+(translation_unit
+  (macro_flag_define
+    (primitive_type)
+    (identifier)
+    (number_literal)
+    (string_literal)))
+
+================================
+Flag definition, default value expression
+================================
+
+ABSL_FLAG(std::vector<int>, test, std::vector<int>{1,2,3}, "");
+
+---
+
+(translation_unit
+  (macro_flag_define
+    (qualified_identifier
+      (namespace_identifier)
+      (template_type
+        (type_identifier)
+        (template_argument_list
+          (type_descriptor
+            (primitive_type)))))
+    (identifier)
+    (compound_literal_expression
+      (qualified_identifier
+        (namespace_identifier)
+        (template_type
+          (type_identifier)
+          (template_argument_list
+            (type_descriptor
+              (primitive_type)))))
+      (initializer_list
+        (number_literal)
+        (number_literal)
+        (number_literal)))
+    (string_literal)))
+
+================================
+Function thread annotations
+================================
+
+class C {
+  void A() ABSL_EXCLUSIVE_LOCKS_REQUIRED(mutex_);
+  void B() ABSL_SHARED_LOCKS_REQUIRED(mutex_);
+  void C() ABSL_LOCKS_EXCLUDED(mutex_);
+
+  absl::Mutex mutex_;
+};
+
+---
+
+(translation_unit
+  (class_specifier
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (primitive_type)
+        (function_declarator
+          (field_identifier)
+          (parameter_list)
+          (absl_thread_annotation
+            (identifier))))
+      (field_declaration
+        (primitive_type)
+        (function_declarator
+          (field_identifier)
+          (parameter_list)
+          (absl_thread_annotation
+            (identifier))))
+      (field_declaration
+        (primitive_type)
+        (function_declarator
+          (field_identifier)
+          (parameter_list)
+          (absl_thread_annotation
+            (identifier))))
+      (field_declaration
+        (qualified_identifier
+          (namespace_identifier)
+          (type_identifier))
+        (field_identifier)))))
+
+================================
+Field thread annotations
+================================
+
+class C {
+  absl::Mutex mutex_;
+
+  int a_ ABSL_GUARDED_BY(mutex_);
+  int b_ ABSL_GUARDED_BY(mutex_) = 0;
+};
+
+---
+
+(translation_unit
+  (class_specifier
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (qualified_identifier
+          (namespace_identifier)
+          (type_identifier))
+        (field_identifier))
+      (field_declaration
+        (primitive_type)
+        (field_identifier)
+        (absl_thread_annotation
+          (identifier)))
+      (field_declaration
+        (primitive_type)
+        (field_identifier)
+        (absl_thread_annotation
+          (identifier))
+        (number_literal)))))
+
+================================
+Lambda thread annotations
+================================
+
+auto l = []() ABSL_EXCLUSIVE_LOCKS_REQUIRED(mutex_) {
+  Test();
+};
+
+---
+
+(translation_unit
+  (declaration
+    (placeholder_type_specifier
+      (auto))
+    (init_declarator
+      (identifier)
+      (lambda_expression
+        (lambda_capture_specifier)
+        (abstract_function_declarator
+          (parameter_list)
+          (absl_thread_annotation
+            (identifier)))
+        (compound_statement
+          (expression_statement
+            (call_expression
+              (identifier)
+              (argument_list))))))))
