@@ -141,7 +141,8 @@ ABSL_FLAG(int, test, 0, "");
 
 ---
 (translation_unit
-  (macro_flag_define
+  (absl_flag
+    (absl_flag_identifier)
     (primitive_type)
     (identifier)
     (number_literal)
@@ -156,7 +157,8 @@ ABSL_FLAG(std::vector<int>, test, std::vector<int>{1,2,3}, "");
 ---
 
 (translation_unit
-  (macro_flag_define
+  (absl_flag
+    (absl_flag_identifier)
     (qualified_identifier
       (namespace_identifier)
       (template_type
@@ -203,6 +205,7 @@ class C {
           (field_identifier)
           (parameter_list)
           (absl_thread_annotation
+            (absl_thread_annotation_identifier)
             (identifier))))
       (field_declaration
         (primitive_type)
@@ -210,6 +213,7 @@ class C {
           (field_identifier)
           (parameter_list)
           (absl_thread_annotation
+            (absl_thread_annotation_identifier)
             (identifier))))
       (field_declaration
         (primitive_type)
@@ -217,6 +221,7 @@ class C {
           (field_identifier)
           (parameter_list)
           (absl_thread_annotation
+            (absl_thread_annotation_identifier)
             (identifier))))
       (field_declaration
         (qualified_identifier
@@ -250,11 +255,13 @@ class C {
         (primitive_type)
         (field_identifier)
         (absl_thread_annotation
+          (absl_thread_annotation_identifier)
           (identifier)))
       (field_declaration
         (primitive_type)
         (field_identifier)
         (absl_thread_annotation
+          (absl_thread_annotation_identifier)
           (identifier))
         (number_literal)))))
 
@@ -279,6 +286,7 @@ auto l = []() ABSL_EXCLUSIVE_LOCKS_REQUIRED(mutex_) {
         (abstract_function_declarator
           (parameter_list)
           (absl_thread_annotation
+            (absl_thread_annotation_identifier)
             (identifier)))
         (compound_statement
           (expression_statement

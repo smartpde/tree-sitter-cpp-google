@@ -131,7 +131,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "macro_flag_define"
+          "name": "absl_flag"
         }
       ]
     },
@@ -13238,15 +13238,40 @@
         }
       ]
     },
-    "macro_flag_define": {
+    "absl_flag_identifier": {
+      "type": "STRING",
+      "value": "ABSL_FLAG"
+    },
+    "absl_thread_annotation_identifier": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "ABSL_GUARDED_BY"
+        },
+        {
+          "type": "STRING",
+          "value": "ABSL_EXCLUSIVE_LOCKS_REQUIRED"
+        },
+        {
+          "type": "STRING",
+          "value": "ABSL_SHARED_LOCKS_REQUIRED"
+        },
+        {
+          "type": "STRING",
+          "value": "ABSL_LOCKS_EXCLUDED"
+        }
+      ]
+    },
+    "absl_flag": {
       "type": "SEQ",
       "members": [
         {
           "type": "FIELD",
           "name": "flag",
           "content": {
-            "type": "STRING",
-            "value": "ABSL_FLAG"
+            "type": "SYMBOL",
+            "name": "absl_flag_identifier"
           }
         },
         {
@@ -13314,25 +13339,8 @@
           "type": "FIELD",
           "name": "annotation",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "ABSL_GUARDED_BY"
-              },
-              {
-                "type": "STRING",
-                "value": "ABSL_EXCLUSIVE_LOCKS_REQUIRED"
-              },
-              {
-                "type": "STRING",
-                "value": "ABSL_SHARED_LOCKS_REQUIRED"
-              },
-              {
-                "type": "STRING",
-                "value": "ABSL_LOCKS_EXCLUDED"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "absl_thread_annotation_identifier"
           }
         },
         {

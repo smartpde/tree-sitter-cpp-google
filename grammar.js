@@ -120,7 +120,7 @@ module.exports = grammar(C, {
       alias($.operator_cast_definition, $.function_definition),
       alias($.operator_cast_declaration, $.declaration),
       $.macro_assignment,
-      $.macro_flag_define,
+      $.absl_flag,
     ),
 
     _block_item: ($, original) => choice(
@@ -691,8 +691,16 @@ module.exports = grammar(C, {
       ';'
     ),
 
-    macro_flag_define: ($) => seq(
-      field('flag', 'ABSL_FLAG'),
+    absl_flag_identifier: ($) => 'ABSL_FLAG',
+    absl_thread_annotation_identifier: ($) => choice(
+      'ABSL_GUARDED_BY',
+      'ABSL_EXCLUSIVE_LOCKS_REQUIRED',
+      'ABSL_SHARED_LOCKS_REQUIRED',
+      'ABSL_LOCKS_EXCLUDED',
+    ),
+
+    absl_flag: ($) => seq(
+      field('flag', $.absl_flag_identifier),
       '(',
       field('type', $.type_specifier),
       ',',
@@ -706,12 +714,7 @@ module.exports = grammar(C, {
     ),
 
     absl_thread_annotation: $ => seq(
-      field('annotation', choice(
-        'ABSL_GUARDED_BY',
-        'ABSL_EXCLUSIVE_LOCKS_REQUIRED',
-        'ABSL_SHARED_LOCKS_REQUIRED',
-        'ABSL_LOCKS_EXCLUDED',
-      )),
+      field('annotation', $.absl_thread_annotation_identifier),
       '(',
       $.identifier,
       ')'

@@ -466,6 +466,62 @@
     ]
   },
   {
+    "type": "absl_flag",
+    "named": true,
+    "fields": {
+      "default_value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "desc": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "flag": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "absl_flag_identifier",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_specifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "absl_thread_annotation",
     "named": true,
     "fields": {
@@ -474,20 +530,8 @@
         "required": true,
         "types": [
           {
-            "type": "ABSL_EXCLUSIVE_LOCKS_REQUIRED",
-            "named": false
-          },
-          {
-            "type": "ABSL_GUARDED_BY",
-            "named": false
-          },
-          {
-            "type": "ABSL_LOCKS_EXCLUDED",
-            "named": false
-          },
-          {
-            "type": "ABSL_SHARED_LOCKS_REQUIRED",
-            "named": false
+            "type": "absl_thread_annotation_identifier",
+            "named": true
           }
         ]
       }
@@ -502,6 +546,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "absl_thread_annotation_identifier",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "abstract_array_declarator",
@@ -4044,62 +4093,6 @@
     }
   },
   {
-    "type": "macro_flag_define",
-    "named": true,
-    "fields": {
-      "default_value": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "expression",
-            "named": true
-          }
-        ]
-      },
-      "desc": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "expression",
-            "named": true
-          }
-        ]
-      },
-      "flag": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "ABSL_FLAG",
-            "named": false
-          }
-        ]
-      },
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "type": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "type_specifier",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "ms_based_modifier",
     "named": true,
     "fields": {},
@@ -6699,6 +6692,10 @@
       "required": false,
       "types": [
         {
+          "type": "absl_flag",
+          "named": true
+        },
+        {
           "type": "alias_declaration",
           "named": true
         },
@@ -6776,10 +6773,6 @@
         },
         {
           "type": "macro_assignment",
-          "named": true
-        },
-        {
-          "type": "macro_flag_define",
           "named": true
         },
         {
@@ -7560,10 +7553,6 @@
     "named": false
   },
   {
-    "type": "ABSL_FLAG",
-    "named": false
-  },
-  {
     "type": "ABSL_GUARDED_BY",
     "named": false
   },
@@ -7778,6 +7767,10 @@
   {
     "type": "_unaligned",
     "named": false
+  },
+  {
+    "type": "absl_flag_identifier",
+    "named": true
   },
   {
     "type": "alignas",
